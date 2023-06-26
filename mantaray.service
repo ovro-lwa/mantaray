@@ -1,0 +1,12 @@
+[Unit]
+Description=Manta Ray Service
+After=network.target
+
+[Service]
+User=pipeline
+WorkingDirectory=/opt/devel/pipeline/distributed-pipeline/
+ExecStart=/bin/bash -c 'source .venv/bin/activate && python mantaray.py'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
