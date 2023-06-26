@@ -2,9 +2,6 @@ import requests
 import time
 import functools
 
-"""
-this acutally does not work.
-"""
 def daily_at_hr(hour, day=None):
     def dec(func):
         @functools.wraps(func)
@@ -44,5 +41,6 @@ if __name__ == '__main__':
     while True:
         # or, maybe, processes and notify and stuff.
         # or, like, run a shell script.
-        weeeeeeeee()
+        f = weeeeeeeee()
+        f = f()
         time.sleep(10)
