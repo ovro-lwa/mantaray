@@ -12,7 +12,9 @@ def daily_at_hr(hour, day=None):
         def wrapper(*args, **kwargs):
             if ts.tm_hour == hour and ((day is None) or (day != ts.tm_mday)):
                 func(*args, **kwargs)
-        return daily_at_hr(hour, day=ts.tm_mday)(wrapper)
+                return daily_at_hr(hour, day=ts.tm_mday)(wrapper)
+            else:
+                return daily_at_hr(hour, day=day)(wrapper)
     return dec
 
 @daily_at_hr(12)
