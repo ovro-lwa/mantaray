@@ -6,19 +6,21 @@ import functools
 this acutally does not work.
 """
 def daily_at_hr(hour, day=None):
-    ts = time.localtime()
     def dec(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
+            ts = time.localtime()
             if ts.tm_hour == hour and ((day is None) or (day != ts.tm_mday)):
                 func(*args, **kwargs)
-                return daily_at_hr(hour, day=ts.tm_mday)(wrapper)
+                return daily_at_hr(hour, day=ts.tm_mday)(func)
             else:
-                return daily_at_hr(hour, day=day)(wrapper)
+                return daily_at_hr(hour, day=day)(func)
+        return wrapper 
     return dec
 
-@daily_at_hr(12)
+@daily_at_hr(4)
 def weeeeeeeee():
+    print('its 4 oclock.')
     requests.post("https://ntfy.sh/ovro-lwa-manta-ray-says", 
                     data="""
                             ⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
